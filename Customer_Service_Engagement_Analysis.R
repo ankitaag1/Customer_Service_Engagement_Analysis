@@ -25,6 +25,16 @@ tweets$text <- gsub("[0-9]+", "", tweets$text)  # Remove numbers
 tweets$text <- gsub("[^[:alnum:][:space:]]", "", tweets$text)  # Remove special characters
 tweets$text <- tolower(tweets$text) # Convert to lowercase
 
+# Tokenize and stem
+stem_tweet <- function(text) {
+  words <- unlist(strsplit(text, " "))
+  stemmed_words <- wordStem(words, language = "en")
+  paste(stemmed_words, collapse = " ")
+}
+
+# Apply stemming
+tweets$text <- sapply(tweets$text, stem_tweet)
+
 # Save the cleaned tweets to a new CSV file
 write.csv(tweets, "cleaned_tweets.csv", row.names = FALSE)
 

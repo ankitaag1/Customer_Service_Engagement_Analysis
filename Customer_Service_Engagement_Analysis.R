@@ -1,5 +1,5 @@
 # Install rtweet package to download data from X
-install.packages("syuzhet")
+install.packages("rtweet")
 library(rtweet)
 
 # Replace with your actual bearer token
